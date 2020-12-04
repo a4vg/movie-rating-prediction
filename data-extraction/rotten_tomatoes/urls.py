@@ -2,13 +2,25 @@
 # movie url ex.: https://www.rottentomatoes.com/m/indiana_jones
 
 import pandas as pd
+import string
 
 def clean(name):
     return name.rsplit(' ', 1)[0]
 
 def toUrl(name):
+    # lowercase
     name = name.lower()
-    name = name.replace("'", "_").replace(" ", "_")
+
+    # Remove THE word
+    if name.split()[-1] == 'the':
+        name = clean(name)
+    
+    # exclude punctuation marks
+    exclude = set(string.punctuation)
+    name = ''.join(ch for ch in name if ch not in exclude)
+
+    # replace [', , (, )] --> _
+    name = name.replace(" ", "_")
     return name
 
 def generateUrls(input_path, output_path):
@@ -38,13 +50,11 @@ def get_urls(base_path):
 
     return df['url_name'].tolist(),df['movieId'].tolist()
 
-''''
 if __name__ == '__main__':
     import pandas as pd
 
-    base_path = '../movielens/'
+    base_path = '../../raw-data/'
     in_filename = 'movies.csv'
     out_filename = 'movies_names.csv'
 
     generateUrls(base_path + in_filename, base_path + out_filename)
-'''

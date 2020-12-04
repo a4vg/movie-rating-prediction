@@ -1,6 +1,7 @@
-# scrapy runspider MoviesSpider.py -a urls_file=../../raw-data/movies_names.csv -o movies.csv -t csv
-
 from scrapy import Spider, Request
+from scrapy.crawler import CrawlerProcess
+from time import sleep
+from random import random
 import urls
 
 class MoviesSpider(Spider):
@@ -19,7 +20,7 @@ class MoviesSpider(Spider):
             yield Request(
                 url=url,
                 cb_kwargs={'movie_id': movie_id},
-                errback=self.handle_404, 
+                errback=self.handle_failure, 
             )
 
     def parse(self, response, movie_id):
@@ -54,18 +55,32 @@ class MoviesSpider(Spider):
             "audience_score": audience_score.strip() if audience_score else None
         }
 
-    def handle_404(self, failure):
-        with open("404_responses.csv", "a") as f:
-            movie_id = failure.request.cb_kwargs["movie_id"]
-            url = failure.request.url
-            f.write(f"{movie_id},{url}\n")
+    def handle_failure(self, failure):
+        url = failure.request.url
+        status = failure.value.response.status
+        movie_id = failure.request.cb_kwargs["movie_id"]
+        
+        if status == 403:
+            sleep(2*random()) # [0, 2] s
+            yield Request(
+                url=url,
+                callback=self.parse,
+                cb_kwargs={'movie_id': movie_id},
+                errback=self.handle_failure, 
+            )
 
+        elif status == 404:
+            with open("404_responses.csv", "a") as f:
+                f.write(f"{movie_id},{url}\n")
 
-
-
-
-
-
+if __name__ == "__main__":
+    process = CrawlerProcess(settings={
+        "FEEDS": {
+            "rotten_movies.csv": {"format": "csv"},
+        },
+    })
+    process.crawl(MoviesSpider, urls_file="../../raw-data/movies_names.csv")
+    process.start()
 
 
 

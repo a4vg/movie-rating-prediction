@@ -33,15 +33,16 @@ def export(movielens_csv, output_csv, error_csv):
     next(infile)
     start_time = time.time()
     for c, line in enumerate(infile):
-        ml_id, _, tmdb_id = line.split(",")  
-        r = get_movie(int(ml_id), int(tmdb_id), error_csv)
-        if r: # not empty
-            writer.writerow( r )
+        ml_id, _, tmdb_id = line.strip().split(",")
+        if tmdb_id:
+          r = get_movie(int(ml_id), int(tmdb_id), error_csv)
+          if r: # not empty
+              writer.writerow( r )
 
-        if c % 100 == 0:
-            print(c)
-            print("--- %s seconds ---" % (time.time() - start_time))
-            start_time = time.time()
+          if c % 100 == 0:
+              print(c)
+              print("--- %s seconds ---" % (time.time() - start_time))
+              start_time = time.time()
     
     infile.close()
     outfile.close()

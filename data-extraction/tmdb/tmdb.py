@@ -40,8 +40,8 @@ def export(movielens_csv, output_csv, error_csv):
 
         if c % 100 == 0:
             print(c)
-            start_time = time.time()
             print("--- %s seconds ---" % (time.time() - start_time))
+            start_time = time.time()
     
     infile.close()
     outfile.close()

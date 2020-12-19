@@ -1,6 +1,7 @@
 # Movie Rating Prediction
 
-Project for Big Data at UTEC.
+Project for Big Data at UTEC. Presentation [here](https://docs.google.com/presentation/d/1lMhDmHDZAS_NrdqU6orxWSsjgNQPyscWWQmStcVh2TY/edit?usp=sharing).
+
 
 #### Team
 

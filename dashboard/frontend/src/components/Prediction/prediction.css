@@ -1,0 +1,42 @@
+h1{
+  text-align:center;
+  color:#8f8d8e;
+  margin-bottom:100px !important;
+}
+
+.project-title{
+  margin-left:-40px !important;
+}
+
+.button-col{
+  padding-left:20px !important;
+  margin-top:30px;
+}
+
+.button{
+  background-color:#8f8d8e !important;
+}
+
+input{
+  width:320px !important;
+}
+
+input:focus {
+  border-bottom: 1px solid #4acee5 !important;
+  box-shadow: 0 1px 0 0 #4acee5 !important;
+}
+
+label.active {
+  color: #4acee5 !important;
+}
+
+.rating-header{
+  font-size:90px;
+  margin-bottom:-10px !important;
+}
+
+h2.rating-number {
+  text-align:center;
+  font-size:180px;
+}
+

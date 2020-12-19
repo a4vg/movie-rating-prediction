@@ -1,0 +1,7 @@
+- name: movie-predictor
+  predictor:
+    type: python
+    path: deploy.py
+  compute:
+    gpu: 1
+    mem: 4G

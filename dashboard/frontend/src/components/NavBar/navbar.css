@@ -1,0 +1,12 @@
+.navbar{
+  background-color:transparent;
+}
+.navitem{
+  color:#8f8d8e ;
+}
+.logo{
+  color:#8f8d8e ;
+}
+nav ul .navitem:hover {
+    background-color: rgba(0, 0, 0, 0) !important;
+}

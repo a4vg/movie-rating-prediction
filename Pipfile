@@ -7,6 +7,11 @@ name = "pypi"
 scrapy = "*"
 pandas = "*"
 requests = "*"
+sklearn = "*"
+ipykernel = "*"
+numpy = "*"
+matplotlib = "*"
+seaborn = "*"
 
 [dev-packages]
 

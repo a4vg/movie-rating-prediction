@@ -14,6 +14,8 @@ Project for Big Data at UTEC.
 
 #### MovieLens (CSV)
 
+From https://grouplens.org/datasets/movielens/25m/
+
 **Total: 651 MB**
 
 * ratings.csv (25 000 095 rows): Users ratings **(646.8MB)**
@@ -21,6 +23,8 @@ Project for Big Data at UTEC.
 * links.csv (62 423 rows): IMDb and TMDB IDs **(1.3MB)**
 
 #### IMDb (CSV)
+
+From https://www.imdb.com/interfaces/
 
 **Total: 3.12 GB**
 
@@ -32,10 +36,14 @@ Project for Big Data at UTEC.
 
 #### Rotten Tomatoes (Web Scrapping)
 
+From https://www.rottentomatoes.com/m/{movie}
+
 * Tomatometer
 * Audience score
 
 #### The Movie DB (TMDB) (API)
+
+From https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={api_key}
 
 * Runtime
 * Country
